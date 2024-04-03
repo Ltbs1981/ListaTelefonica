@@ -52,16 +52,34 @@ int main() {
     Contato* lista = NULL;
     char nome[50];
     char numero[15];
+    int opcao;
 
-    // Solicitar e armazenar os contatos
-    printf("Digite o nome do contato: ");
-    scanf("%s", nome);
-    printf("Digite o número de telefone do contato: ");
-    scanf("%s", numero);
-    lista = adicionarContato(lista, nome, numero);
+    do {
+        printf("\nSelecione uma opção:\n");
+        printf("1. Registrar um contato\n");
+        printf("2. Listar todos os contatos\n");
+        printf("3. Sair\n");
+        printf("Opção: ");
+        scanf("%d", &opcao);
 
-    // Listar todos os contatos
-    listarContatos(lista);
+        switch (opcao) {
+            case 1:
+                printf("\nDigite o nome do contato: ");
+                scanf("%s", nome);
+                printf("Digite o número de telefone do contato: ");
+                scanf("%s", numero);
+                lista = adicionarContato(lista, nome, numero);
+                break;
+            case 2:
+                listarContatos(lista);
+                break;
+            case 3:
+                printf("Encerrando o programa...\n");
+                break;
+            default:
+                printf("Opção inválida. Tente novamente.\n");
+        }
+    } while (opcao != 3);
 
     // Liberar memória alocada para os contatos
     Contato* atual = lista;
